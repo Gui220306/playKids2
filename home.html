@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play Kids — Onde Imaginação e Tecnologia se Encontram</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #d9cfff, #cce6ff);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes floatSobre {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      text-align: center;
+      color: #4c3575;
+      margin-top: 30px;
+      font-weight: bold;
+      text-shadow: 2px 2px #cbbaff;
+    }
+
+    .carousel-inner img {
+      max-height: 500px;
+      width: auto;
+      margin: 0 auto;
+      border-radius: 30px;
+      object-fit: contain;
+      box-shadow: 0 0 25px rgba(147, 121, 255, 0.6);
+      filter: brightness(0.96) saturate(1.1);
+      transition: transform 0.6s ease, filter 0.3s;
+    }
+
+    .carousel-inner img:hover {
+      transform: scale(1.03);
+      filter: brightness(1.05) saturate(1.3);
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      filter: invert(1);
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      padding: 10px;
+    }
+
+    .story-card {
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(147, 121, 255, 0.4);
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .story-card:hover {
+      transform: scale(1.02);
+    }
+
+    footer {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+      border-top: 4px solid #d0bfff;
+      border-radius: 30px 30px 0 0;
+      color: #4c3575;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .floating {
+      position: absolute;
+      animation: floatSobre 8s ease-in-out infinite;
+      opacity: 0.15;
+      z-index: 0;
+    }
+
+    .floating:nth-child(1) {
+      left: 10%;
+      top: 20%;
+      animation-delay: 0s;
+    }
+
+    .floating:nth-child(2) {
+      left: 80%;
+      top: 30%;
+      animation-delay: 2s;
+    }
+
+    .floating:nth-child(3) {
+      left: 50%;
+      top: 70%;
+      animation-delay: 4s;
+    }
+
+    .btn-roxo {
+      background-color: #6a4c93;
+      color: white;
+      border-radius: 20px;
+      font-weight: bold;
+      padding: 12px 35px;
+      border: none;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 15px #6a4c93;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-roxo:hover,
+    .btn-roxo:focus {
+      background-color: #4b3671;
+      color: #e0d7f5;
+      box-shadow: 0 0 25px #b89cff;
+      outline: none;
+      text-decoration: none;
+    }
+
+    canvas#fairyCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @media (max-width: 768px) {
+      .carousel-inner img {
+        max-height: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="fairyCanvas"></canvas>
+
+  <img src="estrela1.png" class="floating" style="width: 80px;" />
+  <img src="nuvem1.png" class="floating" style="width: 100px;" />
+  <img src="varinha.png" class="floating" style="width: 60px;" />
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand mx-auto fw-bold" href="#">Play Kids</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav gap-4">
+          <li class="nav-item"><a class="nav-link active" href="home.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="jogos.html">Jogos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Ajuda</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <h1>🌈 Play Kids — Onde Imaginação e diversão se Encontram 🌟</h1>
+
+  <!-- Carrossel -->
+  <div class="container-fluid px-5">
+    <div id="gameCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        <div class="carousel-item active text-center">
+          <img src="/img/carrossel.jpg" class="d-block mx-auto img-fluid rounded-4 shadow" alt="Monstrinhos brincando">
+        </div>
+
+        <div class="carousel-item text-center">
+          <img src="/img/crianças.jpg" class="d-block mx-auto img-fluid rounded-4 shadow" alt="Crianças brincando">
+        </div>
+
+        <div class="carousel-item text-center">
+          <img src="/img/fonte.jpg" class="d-block mx-auto img-fluid rounded-4 shadow" alt="Fonte de chocolate">
+        </div>
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#gameCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#gameCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
+  <div style="color: #6a4c93; text-align: center; display: flex; margin-top: 20px;">
+    <p>Há muito tempo, num cantinho esquecido entre as nuvens e os sonhos das crianças, nasceu uma sementinha de
+      curiosidade. Essa semente cresceu regada pelas risadas, perguntas e descobertas dos pequenos de todo o mundo.
+      Assim surgiu o Reino Encantado Play Kids — um lugar mágico criado para proteger a alegria de aprender brincando.
+
+      Dizem que os primeiros habitantes do reino foram os Guardiões da Diversão: criaturas fofinhas que espalhavam
+      jogos, histórias e desafios por cada cantinho encantado. Com a ajuda das crianças curiosas, construíram castelos
+      de palavras, rios de números e jardins de cores vivas, onde cada aventura ensina algo novo.
+
+      Desde então, o Play Kids floresce todos os dias, nutrido pela imaginação sem fim dos pequenos exploradores. Aqui,
+      cada clique abre uma nova porta para a magia do saber — porque, no Play Kids, todo aprendizado é uma brincadeira
+      encantada!
+
+    </p>
+  </div>
+
+  <section id="sobre" class="container my-5 rounded shadow-lg p-4" style="background-color: #d0bfff;">
+    <div class="row align-items-center g-4">
+      <div class="col-md-6">
+        <h2 style="color: #4c3575;">O Reino Play Kids</h2>
+        <p>Em um lugar mágico, onde a imaginação não tem limites, vive o Play Kids — um reino colorido e divertido
+          criado especialmente para transformar o aprendizado em uma aventura incrível! Aqui, cada jogo é uma porta para
+          novos conhecimentos, desafios e muita diversão. Prepare-se para explorar castelos de letras, florestas de
+          números e montanhas de criatividade. No Play Kids, brincar é aprender e aprender é uma grande brincadeira!
+        </p>
+        <a href="jogos.html" class="btn-roxo mt-3" role="button">🎉 Quero brincar agora!</a>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="/img/castelo.png" alt="Castelo" class="img-fluid rounded"
+          style="max-width: 300px; animation: floatSobre 6s ease-in-out infinite;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Música de fundo -->
+  <audio autoplay loop>
+    <source
+      src="https://cdn.pixabay.com/download/audio/2021/10/26/audio_690ef31747.mp3?filename=magical-theme-10895.mp3"
+      type="audio/mp3">
+    Seu navegador não suporta áudio HTML5.
+  </audio>
+
+  <!-- Rodapé -->
+  <footer>
+    <h3>🌟 Benefícios dos Jogos Didáticos 🌟</h3>
+    <div class="benefits">
+      <p>🍭 Aprendizado doce e divertido</p>
+      <p>☁️ Ambiente digital seguro e encantador</p>
+      <p>🎈 Estímulo à criatividade, imaginação e desenvolvimento</p>
+    </div>
+    <p>&copy; 2025 Play Kids — Algodão Doce. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const canvas = document.getElementById("fairyCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+
+    function createParticle() {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 1,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.6 + 0.2
+      };
+    }
+
+    for (let i = 0; i < 150; i++) {
+      particles.push(createParticle());
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+        ctx.fill();
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if (p.x < 0 || p.x > canvas.width || p.y < 0 || p.y > canvas.height) {
+          Object.assign(p, createParticle());
+        }
+      });
+      requestAnimationFrame(drawParticles);
+    }
+
+    drawParticles();
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+
+</body>
+
+</html>
