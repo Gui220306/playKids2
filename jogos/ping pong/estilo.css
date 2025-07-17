@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+body {
+    margin: 0;
+    background: linear-gradient(to bottom, #f3e9f7, #e9d8f4);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: #4a3d5c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#dvPainel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    background-color: #f3e6fa;
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(128, 90, 160, 0.1);
+}
+
+.itemPainel {
+    font-size: 16px;
+    color: #6a4c93;
+    font-weight: bold;
+}
+
+#dvJogo {
+    position: relative;
+    width: 960px;
+    height: 500px;
+    border: 6px dashed #cdb4db;
+    background: #f8f0fc;
+    box-shadow: 0 0 20px #d0bdf4;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+#dvBola {
+    position: absolute;
+    top: 240px;
+    left: 470px;
+    width: 20px;
+    height: 20px;
+    background-color: #d291bc;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #d291bc;
+    animation: bounce 1s infinite ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.barra {
+    position: absolute;
+    width: 24px;
+    height: 140px;
+    background-color: #b5aedf;
+    top: 180px;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.esquerda {
+    left: 10px;
+}
+
+.direita {
+    left: 926px;
+}
+
+button {
+    padding: 6px 14px;
+    background-color: #c084fc;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #a855f7;
+}
+
+input {
+    padding: 6px;
+    border: 2px solid #e0b3ff;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    color: #4a3d5c;
+    background-color: #fff;
+}

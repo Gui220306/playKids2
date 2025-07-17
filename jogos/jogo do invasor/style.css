@@ -1,0 +1,20 @@
+body{
+            background-color: black;
+        }
+        h2{
+            color: brown;
+            text-align: center;
+        }
+        img{
+            margin: top 60px; ;
+            margin-left: 80px;
+            margin-top: 350px;
+            opacity: 0;
+            transition: opacity 3s, margin-left 30s, transform 0.2s linear;
+            
+        }
+        img:hover{
+            opacity: 1;
+            transform: rotateY(180deg);
+            margin-left: 2000px;
+        }
