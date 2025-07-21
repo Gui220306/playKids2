@@ -1,20 +1,114 @@
-body{
-            background-color: black;
-        }
-        h2{
-            color: brown;
-            text-align: center;
-        }
-        img{
-            margin: top 60px; ;
-            margin-left: 80px;
-            margin-top: 350px;
-            opacity: 0;
-            transition: opacity 3s, margin-left 30s, transform 0.2s linear;
-            
-        }
-        img:hover{
-            opacity: 1;
-            transform: rotateY(180deg);
-            margin-left: 2000px;
-        }
+body {
+    background-color: rgb(52, 48, 48);
+    margin: 0;
+    overflow: hidden;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.5rem;
+    text-align: center;
+    color: #5D6D7E;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    margin: 20px 0;
+}
+
+h2:hover {
+    transform: scale(1.05);
+    color: #7F8C8D;
+}
+
+#mensagem {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffffdd;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    display: none;
+    text-align: center;
+    z-index: 1001;
+    max-width: 90vw;
+    box-sizing: border-box;
+}
+
+#mensagem button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#lanterna {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(circle at center, transparent 120px, rgba(0, 0, 0, 0.85) 250px);
+    mix-blend-mode: multiply;
+    z-index: 1000;
+}
+
+img {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    max-width: 90vw;
+    height: auto;
+    opacity: 0;
+    transition: opacity 1s, left 2s, top 2s, transform 0.2s linear;
+    touch-action: manipulation;
+}
+
+/* Remove efeito hover que pode dar bug no touch */
+/*@media (hover: hover) {
+    img:hover {
+        opacity: 1;
+        margin-left: 2000px;
+    }
+}*/
+
+/* Tablets */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2rem;
+    }
+
+    img {
+        width: 180px;
+    }
+
+    #lanterna {
+        background: radial-gradient(circle at center, transparent 150px, rgba(0, 0, 0, 0.85) 300px);
+    }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    img {
+        width: 140px;
+    }
+
+    #mensagem {
+        padding: 20px;
+    }
+
+    #lanterna {
+        background: radial-gradient(circle at center, transparent 180px, rgba(0, 0, 0, 0.85) 350px);
+    }
+}

@@ -10,12 +10,14 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 #dvPainel {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 10px;
     margin-top: 10px;
     background-color: #f3e6fa;
@@ -32,63 +34,104 @@ body {
 
 #dvJogo {
     position: relative;
-    width: 960px;
-    height: 500px;
+    width: 90vw;
+    height: 50vw;
+    max-width: 960px;
+    max-height: 500px;
     border: 6px dashed #cdb4db;
     background: #f8f0fc;
     box-shadow: 0 0 20px #d0bdf4;
     border-radius: 16px;
     margin-bottom: 20px;
+    overflow: hidden;
 }
 
 #dvBola {
     position: absolute;
-    top: 240px;
-    left: 470px;
+    top: 50%;
+    left: 50%;
     width: 20px;
     height: 20px;
     background-color: #d291bc;
     border-radius: 50%;
     box-shadow: 0 0 12px #d291bc;
     animation: bounce 1s infinite ease-in-out;
+    transform: translate(-50%, -50%);
 }
 
 @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5%);
+    }
 }
 
 .barra {
     position: absolute;
-    width: 24px;
-    height: 140px;
+    width: 2.5%;
+    height: 28%;
     background-color: #b5aedf;
-    top: 180px;
+    top: 36%;
     border-radius: 12px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
 .esquerda {
-    left: 10px;
+    left: 1%;
 }
 
 .direita {
-    left: 926px;
+    right: 1%;
+}
+
+#dvPlacar {
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+    max-width: 960px;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #6a4c93;
+    font-size: 18px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.placar {
+    background-color: #f3e6fa;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(128, 90, 160, 0.1);
+    flex: 1 1 45%;
+    text-align: center;
+}
+
+#btIniciar {
+    margin-top: 20px;
+}
+
+#btIniciar.hidden {
+    display: none;
 }
 
 button {
-    padding: 6px 14px;
+    padding: 16px 32px;
     background-color: #c084fc;
     color: #fff;
     border: none;
-    border-radius: 6px;
+    border-radius: 12px;
+    font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 button:hover {
     background-color: #a855f7;
+    transform: scale(1.05);
 }
 
 input {
@@ -99,4 +142,32 @@ input {
     font-weight: bold;
     color: #4a3d5c;
     background-color: #fff;
+}
+
+/* RESPONSIVIDADE PARA CELULAR EM MODO PAISAGEM */
+@media (max-width: 812px) and (orientation: landscape) {
+    #dvJogo {
+        width: 100vw;
+        height: 56vw; /* mantém proporção 960x500 = 1.92 */
+    }
+
+    #dvPlacar {
+        width: 100vw;
+        font-size: 16px;
+    }
+
+    .placar {
+        flex: 1 1 48%;
+        padding: 8px 12px;
+    }
+
+    button {
+        font-size: 18px;
+        padding: 12px 24px;
+    }
+
+    input {
+        width: 100%;
+        max-width: 180px;
+    }
 }

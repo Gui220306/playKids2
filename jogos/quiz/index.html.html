@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qual é o Animal?</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%; width: 100%;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(135deg, #ffe0ec, #e0f7fa);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .container {
+      background: #ffffffee;
+      border-radius: 35px;
+      padding: 35px;
+      width: 95%; max-width: 850px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.8em;
+      color: #d81b60;
+      margin-bottom: 25px;
+    }
+    img {
+      width: 100%;
+      max-height: 380px;
+      object-fit: cover;
+      border-radius: 25px;
+      margin-bottom: 20px;
+      border: 4px solid #f06292;
+    }
+    .options {
+      display: flex; flex-wrap: wrap;
+      justify-content: center; gap: 15px;
+      margin-top: 15px;
+    }
+    .options button {
+      background-color: #f48fb1;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .options button:hover {
+      background-color: #ec407a;
+    }
+    #result {
+      font-size: 24px;
+      margin: 20px 0;
+      font-weight: bold;
+      color: #333;
+    }
+    #next-button {
+      padding: 14px 40px;
+      font-size: 18px;
+      background-color: #4dd0e1;
+      border: none;
+      color: white;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+    #next-button:hover {
+      background-color: #00acc1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🐾 Qual é o Animal?</h1>
+    <img id="animal-image" src="" alt="Imagem do animal">
+    <div class="options" id="options-container"></div>
+    <p id="result"></p>
+    <button id="next-button">Próximo</button>
+  </div>
+
+  <script>
+    const animais = [
+      {
+        nome: "Cachorro",
+        imagem: "https://www.metroworldnews.com.br/resizer/v2/NIXMVFU54RCNJI5H3PPU3BCP6U.jpg?auth=28d0fcac5b70f4ecfad0224a71e0c19e21fddba524b6b64f18fa3198b005b40f&width=1440&height=756",
+        opcoes: ["Gato", "Cachorro", "Pato", "Elefante"]
+      },
+      {
+        nome: "Gato",
+        imagem: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
+        opcoes: ["Cavalo", "Leão", "Gato", "Porco"]
+      },
+      {
+        nome: "Leão",
+        imagem: "https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg",
+        opcoes: ["Tigre", "Leão", "Urso", "Rinoceronte"]
+      },
+      {
+        nome: "Elefante",
+        imagem: "https://upload.wikimedia.org/wikipedia/commons/3/37/African_Bush_Elephant.jpg",
+        opcoes: ["Hipopótamo", "Elefante", "Cervo", "Anta"]
+      },
+      {
+        nome: "Pato",
+        imagem: "https://www.regmurcia.com/servlet/integra.servlets.Imagenes?METHOD=VERIMAGEN_101949&nombre=Pato_de_granja_[Pato]_res_720.jpg",
+        opcoes: ["Águia", "Coruja", "Pato", "Galo"]
+      },
+      {
+        nome: "Tigre",
+        imagem: "https://upload.wikimedia.org/wikipedia/commons/5/56/Tiger.50.jpg",
+        opcoes: ["Tigre", "Leopardo", "Zebra", "Urso"]
+      },
+      {
+        nome: "Urso",
+        imagem: "https://2.bp.blogspot.com/-UMMCQiHQ9JY/UjjPEFmJV9I/AAAAAAAAAnI/ZOxEblT3NbQ/s1600/urso_13.jpg",
+        opcoes: ["Cachorro", "Urso", "Búfalo", "Camelo"]
+      }
+    ];
+
+    let indiceAtual = 0;
+
+    function mostrarAnimal() {
+      const animal = animais[indiceAtual];
+      document.getElementById("animal-image").src = animal.imagem;
+      const container = document.getElementById("options-container");
+      container.innerHTML = "";
+      document.getElementById("result").textContent = "";
+
+      animal.opcoes.forEach(opcao => {
+        const botao = document.createElement("button");
+        botao.textContent = opcao;
+        botao.onclick = () => verificarResposta(opcao, animal.nome);
+        container.appendChild(botao);
+      });
+    }
+
+    function verificarResposta(resposta, correta) {
+      const result = document.getElementById("result");
+      if (resposta === correta) {
+        result.textContent = "✅ Correto!";
+        result.style.color = "green";
+      } else {
+        result.textContent = `❌ Errado! Era ${correta}`;
+        result.style.color = "red";
+      }
+    }
+
+    document.getElementById("next-button").onclick = () => {
+      indiceAtual++;
+      if (indiceAtual < animais.length) {
+        mostrarAnimal();
+      } else {
+        document.getElementById("animal-image").style.display = "none";
+        document.getElementById("options-container").innerHTML = "";
+        document.getElementById("result").textContent = "🎉 Parabéns! Você terminou!";
+        document.getElementById("next-button").style.display = "none";
+      }
+    };
+
+    mostrarAnimal();
+  </script>
+</body>
+</html>
